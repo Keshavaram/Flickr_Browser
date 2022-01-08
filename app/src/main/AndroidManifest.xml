@@ -15,12 +15,14 @@
             android:name=".PhotoDetailActivity"
             android:exported="false"
             android:label="@string/title_activity_photo_detail"
-            android:theme="@style/Theme.Flickr.NoActionBar" />
+            android:theme="@style/Theme.Flickr.NoActionBar"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".SearchActivity"
             android:exported="false"
             android:label="@string/title_activity_search"
-            android:theme="@style/Theme.Flickr.NoActionBar" />
+            android:theme="@style/Theme.Flickr.NoActionBar"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

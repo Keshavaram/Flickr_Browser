@@ -1,5 +1,6 @@
 package com.laya.flickr;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -7,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +16,7 @@ import com.laya.flickr.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GetFlickrJsonData.OnDataAvailable,
+public class MainActivity extends BaseActivity implements GetFlickrJsonData.OnDataAvailable,
                                                                 RecyclerItemClickListener.OnRecyclerClickListener
 {
 
@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+
+        activateToolbar(false);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
                 "https://www.flickr.com/services/feeds/photos_public.gne",
                 "en-us",
                 true);
-        getFlickrJsonData.execute("cars,BMW,race,drift");
+        getFlickrJsonData.execute("Flowers");
         Log.d(TAG, "onResume: ends");
     }
 
@@ -103,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
     public void onItemLongClick(View view, int position)
     {
         Log.d(TAG, "onItemLongClick: starts");
-        Toast.makeText(MainActivity.this, "Long Click at pos : " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this, "Long Click at pos : " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,PhotoDetailActivity.class);
+        intent.putExtra(PHOTO_TRANSFER,mFlickrRecyclerViewAdapter.getPhoto(position));
+        startActivity(intent);
     }
 }

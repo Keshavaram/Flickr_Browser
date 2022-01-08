@@ -2,11 +2,9 @@ package com.laya.flickr;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.laya.flickr.databinding.ActivitySearchBinding;
 
-public class SearchActivity extends AppCompatActivity
+public class SearchActivity extends BaseActivity
 {
 
     @Override
@@ -18,6 +16,6 @@ public class SearchActivity extends AppCompatActivity
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
-
+        activateToolbar(true);
     }
 }
